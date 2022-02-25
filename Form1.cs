@@ -20,13 +20,15 @@ public enum DIRECTION
 public struct Walls
 {
     public int x, y;
-    public double angle;
+    public double angleDegree; 
+    public double angleRadians; 
     
     public Walls(int x, int y, double angle)
     {
         this.x = x;
         this.y = y;
-        this.angle = angle;
+        angleDegree = angle;
+        angleRadians = angle * Math.PI / 180.0;
     }
 }
 
@@ -39,73 +41,84 @@ namespace hockey_puck
         static double step_reverse = 1 / step;
         double dx = 0, dy = 0, prevDx = 0, distance = 0;
 
+        int plot_width = 0, plot_height = 0;
+        Graphics graphics;
+
         /// <returns>Угол в радианах</returns>
         /// <param name="angle">Угол в градусах</param>
         public static double ToRad(double angle) { return angle * Math.PI / 180.0; }
 
-        
+        /// <summary>
+        /// Check if point (x, y) lies on a circle with center (h, k) and radius r
+        /// </summary>
+        /// <param name="x">X coordinate of point</param>
+        /// <param name="y">Y coordinate of point</param>
+        /// <param name="h">X-center of circle</param>
+        /// <param name="k">Y-center of circle</param>
+        /// <param name="r">Radius of circle</param>
+        /// <returns></returns>
+        public static bool IsPointOnCircle(double x, double y, double h, double k, double r) { return (x - h) * (x - h) + (y - k) * (y - k) == r * r; }
 
         HockeyPuck hockeyPuck;
         Walls leftDown, rightDown, leftUp, rightUp, down;
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            drawGraph();
-        }
-
         public Form1()
         {
             InitializeComponent();
+            plot_width = pictureBox1.Width - 1;
+            plot_height = pictureBox1.Height - 1;
+            graphics = pictureBox1.CreateGraphics();
         }
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            label1.Text = Friction.Value.ToString();
-            hockeyPuck = new HockeyPuck((double)Mass.Value, (double)Radius.Value, (double)Friction.Value, (double)Velocity.Value, (double)ThrowAngle.Value, 0, 0);
-            leftDown = new Walls(0, (int)TunnelHeight.Value, 90); // wall from (0, 0) to (0, height)
-            rightDown = new Walls((int)TunnelWidth.Value, (int)TunnelHeight.Value, 90); // wall from (width, 0) to (width, height)
-            leftUp = new Walls(0, (int)TunnelHeight.Value, (int)TunnelAngle.Value); // tilted wall from (0, height)
+            hockeyPuck = new HockeyPuck((double)Mass.Value, (double)Radius.Value, (double)Friction.Value, (double)Velocity.Value, (double)ThrowAngle.Value, (double)puckX.Value, (double)puckY.Value);
+            leftDown = new Walls(0, (int)TunnelHeight.Value, 90.0); // wall from (0, 0) to (0, height)
+            rightDown = new Walls((int)TunnelWidth.Value, (int)TunnelHeight.Value, 90.0); // wall from (width, 0) to (width, height)
+            leftUp = new Walls(0, (int)TunnelHeight.Value, (double)TunnelAngle.Value); // tilted wall from (0, height)
             rightUp = new Walls((int)TunnelWidth.Value, (int)TunnelHeight.Value, (double)TunnelAngle.Value); // tilted wall from (width, height)
 
             double acceleration = -hockeyPuck.friction * g; // a = -µg
             hockeyPuck.SetDirection();
 
-            int width = pictureBox1.Width - 1;
-            int height = pictureBox1.Height - 1;
+            drawGraph();
 
-            Graphics graphics = pictureBox1.CreateGraphics();
-            graphics.Clear(Color.White);
-            Pen pen = new Pen(Color.Black);
-
-            graphics.DrawLine(pen, new Point(0, height), new Point(0, height - leftDown.y));
-            graphics.DrawLine(pen, new Point(rightDown.x, height), new Point(rightDown.x, height - rightDown.y));
-
+            // TODO:
+            // 1. Get y range [hockeyPuck.y - hockeyPuck.r; hockeyPuck.y + hockeyPuck.r]
+            // 2. With some step check for every y find x:  y = tg(angleWall)*x + tunnelHeight;
+            // 3. Check if this point (x, y) if lies on hockeyPuck. WITH SOME EPSILON !!!
+            // 4. True => BounceWall & stop checking, False => Keep checking points
+            // 5. If all points are checked and no bounce then just let it fly away lol
 
             while (hockeyPuck.velocity > 0)
             {
                 dx = dy = hockeyPuck.velocity * step - acceleration * step * step / 2; // Перемещение шайбы за 1 единицу времени
-                distance = Math.Sqrt(dx * dx + dy * dy);
+                distance += Math.Sqrt(dx * dx + dy * dy);
                 hockeyPuck.velocity += acceleration / step_reverse; // += because acceleration is negative
                 hockeyPuck.x += dx * Math.Cos(hockeyPuck.angleRadians);
                 hockeyPuck.y += dy * Math.Sin(hockeyPuck.angleRadians);
 
-                graphics.FillRectangle(new SolidBrush(Color.Red), (float)hockeyPuck.x, (float)(height - hockeyPuck.y), 1, 1);
+                graphics.FillRectangle(new SolidBrush(Color.Red), (float)hockeyPuck.x, (float)(plot_height - hockeyPuck.y), 1, 1);
 
-                switch (hockeyPuck.direction)
+                // If hockey puck is still in the straight tunnel
+                if (hockeyPuck.y + hockeyPuck.radius <= leftDown.y)
                 {
-                    case DIRECTION.LEFT:
-                        if (hockeyPuck.x - hockeyPuck.radius <= leftDown.x) hockeyPuck.BounceWall(leftDown.angle);
-                        break;
-                    case DIRECTION.RIGHT:
-                        if (hockeyPuck.x + hockeyPuck.radius >= rightDown.x) hockeyPuck.BounceWall(rightDown.angle);
-                        break;
-                    case DIRECTION.UP:
-                        break;
-                    case DIRECTION.DOWN:
-                        break;
+                    switch (hockeyPuck.direction)
+                    {
+                        case DIRECTION.LEFT:
+                            if (hockeyPuck.x - hockeyPuck.radius <= leftDown.x) hockeyPuck.BounceWall(leftDown.angleDegree);
+                            break;
+                        case DIRECTION.RIGHT:
+                            if (hockeyPuck.x + hockeyPuck.radius >= rightDown.x) hockeyPuck.BounceWall(rightDown.angleDegree);
+                            break;
+                        case DIRECTION.UP:
+                            break;
+                        case DIRECTION.DOWN:
+                            break;
+                    }
                 }
 
-                hockeyPuck.SetDirection();
+                // else puck in tilted tunnel
             }
 
 
@@ -115,15 +128,21 @@ namespace hockey_puck
 
         private void drawGraph()
         {
-            int width = pictureBox1.Width - 1;
-            int height = pictureBox1.Height - 1;
-
-            Graphics graphics = pictureBox1.CreateGraphics();
             graphics.Clear(Color.White);
             Pen pen = new Pen(Color.Black);
 
-            graphics.DrawLine(pen, new Point(0, height), new Point(0, height - leftDown.y));
-            graphics.DrawLine(pen, new Point(rightDown.x, height), new Point(rightDown.x, height - rightDown.y));
+            graphics.DrawLine(pen, new Point(leftDown.x, plot_height), new Point(leftDown.x, plot_height - leftDown.y)); // left straight wall
+            graphics.DrawLine(pen, new Point(rightDown.x, plot_height), new Point(rightDown.x, plot_height - rightDown.y)); // right straight wall
+
+            // Left tilted wall
+            double tilted_x = leftDown.x + Math.Cos(leftUp.angleRadians) * (plot_width - leftDown.x);
+            double tilted_y = leftDown.y - Math.Sin(leftUp.angleRadians) * (plot_height - leftDown.y);
+            Point tilted = new Point((int)tilted_x, (int)tilted_y);
+            graphics.DrawLine(pen, new Point(leftDown.x, plot_height - leftDown.y), tilted);
+
+            // Right tilted wall
+            tilted = new Point((int)(tilted_x + (rightDown.x - leftDown.x)), (int)tilted_y);
+            graphics.DrawLine(pen, new Point(rightDown.x, plot_height - rightDown.y), tilted);
         }
     }
 }
