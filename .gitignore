@@ -1,0 +1,5 @@
+*proj*
+/bin/*
+/obj/*
+/Properties/*
+App.config
