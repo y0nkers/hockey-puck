@@ -10,14 +10,14 @@ namespace hockey_puck
     {
         public double mass, radius, friction, velocity, angleDegree, angleRadians, x, y;
         public DIRECTION direction = DIRECTION.NONE;
-        public HockeyPuck(double mass, double radius, double friction, double velocity, double throwAngle, int x, int y)
+        public HockeyPuck(double mass, double radius, double friction, double velocity, double throwAngle, double x, double y)
         {
             this.mass = mass;
             this.radius = radius;
             this.friction = friction;
             this.velocity = velocity;
-            this.angleDegree = throwAngle;
-            this.angleRadians = throwAngle * Math.PI / 180.0;
+            angleDegree = throwAngle;
+            angleRadians = throwAngle * Math.PI / 180.0;
             this.x = x;
             this.y = y;
         }
@@ -39,11 +39,12 @@ namespace hockey_puck
         }
 
         /// <returns>Угол отскока шайбы от стены</returns>
-        /// <param name="wallsAngle">Угол поворота стен</param>
+        /// <param name="wallsAngle">Угол поворота стен (в градусах)</param>
         public void BounceWall(double wallsAngle) 
         { 
             angleDegree = 2 * wallsAngle - angleDegree;
             angleRadians = angleDegree * Math.PI / 180.0;
+            SetDirection();
         }
     }
 }
