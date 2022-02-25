@@ -46,13 +46,11 @@ namespace hockey_puck
             this.labelTunnelHeight = new System.Windows.Forms.Label();
             this.labelTunnelAngle = new System.Windows.Forms.Label();
             this.buttonCalculate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.labelX = new System.Windows.Forms.Label();
             this.labelY = new System.Windows.Forms.Label();
-            this.numericUpDownX = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownY = new System.Windows.Forms.NumericUpDown();
+            this.puckX = new System.Windows.Forms.NumericUpDown();
+            this.puckY = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.Radius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Mass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Friction)).BeginInit();
@@ -62,8 +60,8 @@ namespace hockey_puck
             ((System.ComponentModel.ISupportInitialize)(this.TunnelHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TunnelAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puckX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puckY)).BeginInit();
             this.SuspendLayout();
             // 
             // Radius
@@ -211,15 +209,6 @@ namespace hockey_puck
             this.buttonCalculate.UseVisualStyleBackColor = true;
             this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 360);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "label1";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(296, 153);
@@ -227,16 +216,6 @@ namespace hockey_puck
             this.pictureBox1.Size = new System.Drawing.Size(460, 260);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 390);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // labelX
             // 
@@ -256,32 +235,30 @@ namespace hockey_puck
             this.labelY.TabIndex = 21;
             this.labelY.Text = "Y координата шайбы: ";
             // 
-            // numericUpDownX
+            // puckX
             // 
-            this.numericUpDownX.Location = new System.Drawing.Point(158, 148);
-            this.numericUpDownX.Name = "numericUpDownX";
-            this.numericUpDownX.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownX.TabIndex = 22;
+            this.puckX.Location = new System.Drawing.Point(158, 148);
+            this.puckX.Name = "puckX";
+            this.puckX.Size = new System.Drawing.Size(120, 20);
+            this.puckX.TabIndex = 22;
             // 
-            // numericUpDownY
+            // puckY
             // 
-            this.numericUpDownY.Location = new System.Drawing.Point(158, 174);
-            this.numericUpDownY.Name = "numericUpDownY";
-            this.numericUpDownY.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownY.TabIndex = 23;
+            this.puckY.Location = new System.Drawing.Point(158, 174);
+            this.puckY.Name = "puckY";
+            this.puckY.Size = new System.Drawing.Size(120, 20);
+            this.puckY.TabIndex = 23;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.numericUpDownY);
-            this.Controls.Add(this.numericUpDownX);
+            this.Controls.Add(this.puckY);
+            this.Controls.Add(this.puckX);
             this.Controls.Add(this.labelY);
             this.Controls.Add(this.labelX);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCalculate);
             this.Controls.Add(this.labelTunnelAngle);
             this.Controls.Add(this.labelTunnelHeight);
@@ -310,8 +287,8 @@ namespace hockey_puck
             ((System.ComponentModel.ISupportInitialize)(this.TunnelHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TunnelAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puckX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puckY)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,13 +313,11 @@ namespace hockey_puck
         private System.Windows.Forms.Label labelTunnelHeight;
         private System.Windows.Forms.Label labelTunnelAngle;
         private System.Windows.Forms.Button buttonCalculate;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelX;
         private System.Windows.Forms.Label labelY;
-        private System.Windows.Forms.NumericUpDown numericUpDownX;
-        private System.Windows.Forms.NumericUpDown numericUpDownY;
+        private System.Windows.Forms.NumericUpDown puckX;
+        private System.Windows.Forms.NumericUpDown puckY;
     }
 }
 
