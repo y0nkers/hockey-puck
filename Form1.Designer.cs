@@ -124,7 +124,7 @@ namespace hockey_puck
             // 
             // TunnelHeight
             // 
-            this.TunnelHeight.Location = new System.Drawing.Point(212, 320);
+            this.TunnelHeight.Location = new System.Drawing.Point(211, 359);
             this.TunnelHeight.Margin = new System.Windows.Forms.Padding(4);
             this.TunnelHeight.Name = "TunnelHeight";
             this.TunnelHeight.Size = new System.Drawing.Size(180, 26);
@@ -132,7 +132,7 @@ namespace hockey_puck
             // 
             // TunnelAngle
             // 
-            this.TunnelAngle.Location = new System.Drawing.Point(212, 354);
+            this.TunnelAngle.Location = new System.Drawing.Point(211, 322);
             this.TunnelAngle.Margin = new System.Windows.Forms.Padding(4);
             this.TunnelAngle.Name = "TunnelAngle";
             this.TunnelAngle.Size = new System.Drawing.Size(180, 26);
