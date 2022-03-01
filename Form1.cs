@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 public enum DIRECTION
 {
@@ -111,8 +112,8 @@ namespace hockey_puck
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            labelDistance.Text = "Пройденная дистанция: ";
-            textBoxTrace.Text = "";
+            clearInfo();
+
             hockeyPuck = new HockeyPuck((double)Mass.Value, (double)Radius.Value, (double)Friction.Value, (double)Velocity.Value, (double)ThrowAngle.Value, (double)puckX.Value, (double)puckY.Value);
             leftDown = new Walls(0, (int)TunnelHeight.Value, 90.0); // wall from (0, 0) to (0, height)
             rightDown = new Walls((int)TunnelWidth.Value, (int)TunnelHeight.Value, 90.0); // wall from (width, 0) to (width, height)
@@ -121,6 +122,9 @@ namespace hockey_puck
 
             double acceleration = -hockeyPuck.friction * g; // a = -µg
             drawGraph();
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
 
             while (hockeyPuck.velocity > 0)
             {
@@ -182,7 +186,14 @@ namespace hockey_puck
                 }
 
             }
-            labelDistance.Text = labelDistance.Text + distance + " у.е";
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsed = String.Format("{0:00}.{1:00} секунд", ts.Seconds, ts.Milliseconds / 10);
+
+            labelDistance.Text = labelDistance.Text + distance.ToString("0.000") + " у.е";
+            bounceCount.Text += hockeyPuck.bounceCount;
+            elapsedTime.Text += elapsed;
         }
 
         // lines may not be correct since coordinates are assumed to be integer
@@ -203,6 +214,16 @@ namespace hockey_puck
             // Right tilted wall
             tilted = new Point((int)(tilted_x + (rightDown.x - leftDown.x)), (int)tilted_y);
             graphics.DrawLine(pen, new Point(rightDown.x, plot_height - rightDown.y), tilted);
+        }
+
+        private void clearInfo()
+        {
+            labelDistance.Text = "Пройденная дистанция: ";
+            bounceCount.Text = "Количество столкновений: ";
+            elapsedTime.Text = "Затраченное время: ";
+            textBoxTrace.Text = "";
+
+            distance = time = 0;
         }
     }
 }
