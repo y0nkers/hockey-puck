@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace hockey_puck
 {
@@ -18,12 +14,20 @@ namespace hockey_puck
             this.friction = friction;
             this.velocity = velocity;
             angleDegree = throwAngle;
-            angleRadians = throwAngle * Math.PI / 180.0;
+            angleRadians = ToRad(throwAngle);
             this.x = x;
             this.y = y;
+            SetDirection();
         }
 
-        public void SetDirection()
+        /// <returns>Angle in radians</returns>
+        /// <param name="angle">Angle in degrees</param>
+        private double ToRad(double angle) { return angle * Math.PI / 180.0; }
+
+        /// <summary>
+        /// Setting movement direction of puck
+        /// </summary>
+        private void SetDirection()
         {
             switch (this.angleDegree)
             {
@@ -39,12 +43,12 @@ namespace hockey_puck
             }
         }
 
-        /// <returns>Угол отскока шайбы от стены</returns>
-        /// <param name="wallsAngle">Угол поворота стен (в градусах)</param>
-        public void BounceWall(double wallsAngle) 
+        /// <returns>Wall rebound angle</returns>
+        /// <param name="wallAngle">Wall angle(in degrees)</param>
+        public void BounceWall(double wallAngle) 
         {
             if (!firstBounce) firstBounce = true;
-            angleDegree = 2 * wallsAngle - angleDegree;
+            angleDegree = (2 * wallAngle - angleDegree) % 360;
             angleRadians = angleDegree * Math.PI / 180.0;
             SetDirection();
         }
