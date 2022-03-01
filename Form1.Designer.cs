@@ -69,23 +69,55 @@ namespace hockey_puck
             // 
             // Radius
             // 
+            this.Radius.DecimalPlaces = 2;
             this.Radius.Location = new System.Drawing.Point(211, 7);
             this.Radius.Margin = new System.Windows.Forms.Padding(4);
+            this.Radius.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.Radius.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Radius.Name = "Radius";
             this.Radius.Size = new System.Drawing.Size(180, 26);
             this.Radius.TabIndex = 0;
+            this.Radius.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Mass
             // 
+            this.Mass.DecimalPlaces = 2;
             this.Mass.Location = new System.Drawing.Point(211, 41);
             this.Mass.Margin = new System.Windows.Forms.Padding(4);
+            this.Mass.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.Mass.Name = "Mass";
             this.Mass.Size = new System.Drawing.Size(180, 26);
             this.Mass.TabIndex = 1;
+            this.Mass.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Friction
             // 
             this.Friction.DecimalPlaces = 2;
+            this.Friction.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
             this.Friction.Location = new System.Drawing.Point(211, 75);
             this.Friction.Margin = new System.Windows.Forms.Padding(4);
             this.Friction.Maximum = new decimal(new int[] {
@@ -93,50 +125,106 @@ namespace hockey_puck
             0,
             0,
             0});
+            this.Friction.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
             this.Friction.Name = "Friction";
             this.Friction.Size = new System.Drawing.Size(180, 26);
             this.Friction.TabIndex = 2;
+            this.Friction.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            65536});
             // 
             // Velocity
             // 
+            this.Velocity.DecimalPlaces = 2;
+            this.Velocity.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.Velocity.Location = new System.Drawing.Point(211, 109);
             this.Velocity.Margin = new System.Windows.Forms.Padding(4);
+            this.Velocity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Velocity.Name = "Velocity";
             this.Velocity.Size = new System.Drawing.Size(180, 26);
             this.Velocity.TabIndex = 3;
+            this.Velocity.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // ThrowAngle
             // 
             this.ThrowAngle.DecimalPlaces = 2;
             this.ThrowAngle.Location = new System.Drawing.Point(211, 143);
             this.ThrowAngle.Margin = new System.Windows.Forms.Padding(4);
+            this.ThrowAngle.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.ThrowAngle.Name = "ThrowAngle";
             this.ThrowAngle.Size = new System.Drawing.Size(180, 26);
             this.ThrowAngle.TabIndex = 4;
+            this.ThrowAngle.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // TunnelWidth
             // 
-            this.TunnelWidth.Location = new System.Drawing.Point(212, 286);
+            this.TunnelWidth.Location = new System.Drawing.Point(210, 269);
             this.TunnelWidth.Margin = new System.Windows.Forms.Padding(4);
             this.TunnelWidth.Name = "TunnelWidth";
             this.TunnelWidth.Size = new System.Drawing.Size(180, 26);
-            this.TunnelWidth.TabIndex = 5;
+            this.TunnelWidth.TabIndex = 7;
+            this.TunnelWidth.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // TunnelHeight
             // 
-            this.TunnelHeight.Location = new System.Drawing.Point(211, 359);
+            this.TunnelHeight.Location = new System.Drawing.Point(209, 304);
             this.TunnelHeight.Margin = new System.Windows.Forms.Padding(4);
             this.TunnelHeight.Name = "TunnelHeight";
             this.TunnelHeight.Size = new System.Drawing.Size(180, 26);
-            this.TunnelHeight.TabIndex = 6;
+            this.TunnelHeight.TabIndex = 8;
+            this.TunnelHeight.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // TunnelAngle
             // 
-            this.TunnelAngle.Location = new System.Drawing.Point(211, 322);
+            this.TunnelAngle.Location = new System.Drawing.Point(209, 337);
             this.TunnelAngle.Margin = new System.Windows.Forms.Padding(4);
+            this.TunnelAngle.Maximum = new decimal(new int[] {
+            89,
+            0,
+            0,
+            0});
             this.TunnelAngle.Name = "TunnelAngle";
             this.TunnelAngle.Size = new System.Drawing.Size(180, 26);
-            this.TunnelAngle.TabIndex = 7;
+            this.TunnelAngle.TabIndex = 9;
+            this.TunnelAngle.Value = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
             // 
             // labelRadius
             // 
@@ -197,7 +285,7 @@ namespace hockey_puck
             // 
             this.labelTunnelWidth.AutoSize = true;
             this.labelTunnelWidth.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTunnelWidth.Location = new System.Drawing.Point(9, 288);
+            this.labelTunnelWidth.Location = new System.Drawing.Point(7, 271);
             this.labelTunnelWidth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTunnelWidth.Name = "labelTunnelWidth";
             this.labelTunnelWidth.Size = new System.Drawing.Size(143, 19);
@@ -208,7 +296,7 @@ namespace hockey_puck
             // 
             this.labelTunnelHeight.AutoSize = true;
             this.labelTunnelHeight.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTunnelHeight.Location = new System.Drawing.Point(9, 356);
+            this.labelTunnelHeight.Location = new System.Drawing.Point(7, 306);
             this.labelTunnelHeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTunnelHeight.Name = "labelTunnelHeight";
             this.labelTunnelHeight.Size = new System.Drawing.Size(133, 19);
@@ -219,7 +307,7 @@ namespace hockey_puck
             // 
             this.labelTunnelAngle.AutoSize = true;
             this.labelTunnelAngle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTunnelAngle.Location = new System.Drawing.Point(9, 322);
+            this.labelTunnelAngle.Location = new System.Drawing.Point(7, 339);
             this.labelTunnelAngle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTunnelAngle.Name = "labelTunnelAngle";
             this.labelTunnelAngle.Size = new System.Drawing.Size(199, 19);
@@ -234,13 +322,14 @@ namespace hockey_puck
             this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCalculate.Name = "buttonCalculate";
             this.buttonCalculate.Size = new System.Drawing.Size(146, 62);
-            this.buttonCalculate.TabIndex = 16;
+            this.buttonCalculate.TabIndex = 10;
             this.buttonCalculate.Text = "Рассчитать";
             this.buttonCalculate.UseVisualStyleBackColor = false;
             this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(427, 7);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
@@ -276,7 +365,7 @@ namespace hockey_puck
             this.puckX.Margin = new System.Windows.Forms.Padding(4);
             this.puckX.Name = "puckX";
             this.puckX.Size = new System.Drawing.Size(180, 26);
-            this.puckX.TabIndex = 22;
+            this.puckX.TabIndex = 5;
             // 
             // puckY
             // 
@@ -284,7 +373,7 @@ namespace hockey_puck
             this.puckY.Margin = new System.Windows.Forms.Padding(4);
             this.puckY.Name = "puckY";
             this.puckY.Size = new System.Drawing.Size(180, 26);
-            this.puckY.TabIndex = 23;
+            this.puckY.TabIndex = 6;
             // 
             // button1
             // 
@@ -294,7 +383,7 @@ namespace hockey_puck
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(146, 62);
-            this.button1.TabIndex = 24;
+            this.button1.TabIndex = 11;
             this.button1.Text = "test";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
