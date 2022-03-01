@@ -54,6 +54,8 @@ namespace hockey_puck
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxTrace = new System.Windows.Forms.TextBox();
             this.labelDistance = new System.Windows.Forms.Label();
+            this.bounceCount = new System.Windows.Forms.Label();
+            this.elapsedTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Radius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Mass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Friction)).BeginInit();
@@ -318,7 +320,7 @@ namespace hockey_puck
             // 
             this.buttonCalculate.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonCalculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCalculate.Location = new System.Drawing.Point(13, 404);
+            this.buttonCalculate.Location = new System.Drawing.Point(13, 394);
             this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCalculate.Name = "buttonCalculate";
             this.buttonCalculate.Size = new System.Drawing.Size(146, 62);
@@ -379,7 +381,7 @@ namespace hockey_puck
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(13, 498);
+            this.button1.Location = new System.Drawing.Point(209, 394);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(146, 62);
@@ -401,11 +403,29 @@ namespace hockey_puck
             // labelDistance
             // 
             this.labelDistance.AutoSize = true;
-            this.labelDistance.Location = new System.Drawing.Point(423, 366);
+            this.labelDistance.Location = new System.Drawing.Point(15, 485);
             this.labelDistance.Name = "labelDistance";
             this.labelDistance.Size = new System.Drawing.Size(186, 19);
             this.labelDistance.TabIndex = 26;
             this.labelDistance.Text = "Пройденная дистанция: ";
+            // 
+            // bounceCount
+            // 
+            this.bounceCount.AutoSize = true;
+            this.bounceCount.Location = new System.Drawing.Point(15, 524);
+            this.bounceCount.Name = "bounceCount";
+            this.bounceCount.Size = new System.Drawing.Size(206, 19);
+            this.bounceCount.TabIndex = 27;
+            this.bounceCount.Text = "Количество столкновений:";
+            // 
+            // elapsedTime
+            // 
+            this.elapsedTime.AutoSize = true;
+            this.elapsedTime.Location = new System.Drawing.Point(15, 558);
+            this.elapsedTime.Name = "elapsedTime";
+            this.elapsedTime.Size = new System.Drawing.Size(157, 19);
+            this.elapsedTime.TabIndex = 28;
+            this.elapsedTime.Text = "Затраченное время: ";
             // 
             // Form1
             // 
@@ -413,6 +433,8 @@ namespace hockey_puck
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(974, 658);
+            this.Controls.Add(this.elapsedTime);
+            this.Controls.Add(this.bounceCount);
             this.Controls.Add(this.labelDistance);
             this.Controls.Add(this.textBoxTrace);
             this.Controls.Add(this.button1);
@@ -486,6 +508,8 @@ namespace hockey_puck
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBoxTrace;
         private System.Windows.Forms.Label labelDistance;
+        private System.Windows.Forms.Label bounceCount;
+        private System.Windows.Forms.Label elapsedTime;
     }
 }
 
