@@ -120,6 +120,7 @@ namespace hockey_puck
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            labelDistance.Text = "";
             textBoxTrace.Text = "";
             hockeyPuck = new HockeyPuck((double)Mass.Value, (double)Radius.Value, (double)Friction.Value, (double)Velocity.Value, (double)ThrowAngle.Value, (double)puckX.Value, (double)puckY.Value);
             leftDown = new Walls(0, (int)TunnelHeight.Value, 90.0); // wall from (0, 0) to (0, height)
